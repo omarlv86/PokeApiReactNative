@@ -1,6 +1,8 @@
 import React from 'react'
-import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, Image, Text } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { PokemonCard } from '../components/PokemonCard'
+//import { FadeInImage } from '../components/FadeInImage'
 import { usePokemonPaginate } from '../hooks/usePokemonPaginate'
 import { styles } from '../theme/appTheme'
 
@@ -19,22 +21,24 @@ export const HomeScreen = () => {
             <FlatList
               data={ simplePokemonList }
               keyExtractor={ (pokemon) => pokemon.id}
-              //renderItem={ ({ item }) => <Text style={{color:'black'}}>{ item.name }</Text>  }
               showsVerticalScrollIndicator={false}
-              renderItem={ ({ item }) => (
-                <Image
-                  source={{ uri: item.picture }}
-                  style={{
-                      width:100,
-                      height:100
-                  }}
-                />
+              numColumns={ 2 }
+              //Header
+              ListHeaderComponent={( 
+                <Text style={{
+                  ...styles.title,
+                  ...styles.globalMargin,
+                  top: top + 20,
+                  marginBottom: top + 20
+                  }}>Pokedex
+                </Text>
               )}
-
+              renderItem={ ({ item }) => (
+                <PokemonCard pokemon={ item }/>
+              )}
               //inifinite scroll
               onEndReached={ loadPokemons } 
               onEndReachedThreshold={ 0.4 }
-
               ListFooterComponent={(
                 <ActivityIndicator 
                   style={{height:100 }}
@@ -43,12 +47,6 @@ export const HomeScreen = () => {
                 />
               )}
             />
-            {/* <Text style={{
-                ...styles.title,
-                ...styles.globalMargin,
-                top: top + 20
-                }}>Pokedex
-            </Text> */}
         </>
     )
 }
