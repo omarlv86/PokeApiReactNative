@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActivityIndicator, FlatList, Image, Text } from 'react-native'
+import { ActivityIndicator, FlatList, Image, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { PokemonCard } from '../components/PokemonCard'
 //import { FadeInImage } from '../components/FadeInImage'
@@ -13,11 +13,13 @@ export const HomeScreen = () => {
     //console.log(simplePokemonList)
     return (
         <>
-            <Image
-              source={require('../assets/pokebola.png')}
-              style={ styles.pokebolaBG}
-            />
-
+          <Image
+            source={require('../assets/pokebola.png')}
+            style={ styles.pokebolaBG}
+          />
+          <View
+            style={{ alignItems:'center' }}
+          >
             <FlatList
               data={ simplePokemonList }
               keyExtractor={ (pokemon) => pokemon.id}
@@ -47,6 +49,7 @@ export const HomeScreen = () => {
                 />
               )}
             />
+          </View>
         </>
     )
 }
