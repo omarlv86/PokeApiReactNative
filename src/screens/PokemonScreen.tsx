@@ -17,7 +17,7 @@ export const PokemonScreen = ( { navigation, route }: Props) => {
     //console.log(simplePokemon, color)
 
     const { isLoading, pokemon } =usePokemon( id )
-    console.log(pokemon)
+    //console.log(pokemon)
     return (
         <View style={{flex:1}}>
           <View style={{
